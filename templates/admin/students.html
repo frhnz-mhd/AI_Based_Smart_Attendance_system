@@ -1,0 +1,105 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <div>
+        <h1>Students Management</h1>
+        <p>Add students, capture face dataset, and train recognition model.</p>
+    </div>
+
+    <div class="page-badge">
+        <i class="fa-solid fa-users"></i>
+        {{ students|length }} Students
+    </div>
+</div>
+
+<div class="dashboard-row">
+
+    <section class="panel">
+        <h2><i class="fa-solid fa-user-plus"></i> Add Student</h2>
+
+        <form id="studentForm" class="form-grid">
+            <input name="reg_no" placeholder="Registration No" required>
+            <input name="name" placeholder="Student Name" required>
+            <input name="course" placeholder="Course">
+            <input name="class_name" placeholder="Class">
+            <input name="phone" placeholder="Phone">
+            <input name="password" placeholder="Login Password" value="student123">
+
+            <button type="submit">
+                <i class="fa-solid fa-save"></i> Save Student
+            </button>
+        </form>
+
+        <p id="studentMsg" class="admin-msg">Save student first.</p>
+    </section>
+
+    <section class="panel">
+        <h2><i class="fa-solid fa-camera"></i> Face Dataset</h2>
+
+        <div class="capture-box">
+            <video id="captureVideo" autoplay muted playsinline></video>
+        </div>
+
+        <canvas id="captureCanvas" hidden></canvas>
+
+        <p id="captureStatus" class="admin-msg">Captured 0 / 30</p>
+
+        <div class="button-row">
+            <button id="startCaptureBtn" type="button" disabled>
+                <i class="fa-solid fa-camera"></i> Start Capture
+            </button>
+
+            <button id="trainBtn" type="button">
+                <i class="fa-solid fa-brain"></i> Train Model
+            </button>
+        </div>
+
+        <p id="trainMsg" class="admin-msg"></p>
+    </section>
+
+</div>
+
+<section class="panel">
+
+    <div class="panel-header">
+        <h2><i class="fa-solid fa-list"></i> Student List</h2>
+        <input class="table-search" placeholder="Search student...">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Reg No</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Class</th>
+                <th>Phone</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for s in students %}
+            <tr>
+                <td><b>{{ s.reg_no }}</b></td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.course }}</td>
+                <td>{{ s.class_name }}</td>
+                <td>{{ s.phone }}</td>
+                <td><span class="badge-success">Active</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">No students added yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+
+<script src="{{ url_for('static', filename='js/camera_add_student.js') }}"></script>
+
+{% endblock %}

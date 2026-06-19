@@ -1,0 +1,95 @@
+{% extends 'student/base.html' %}
+
+{% block content %}
+
+<div class="scan-header">
+    <a href="/student/home" class="back-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+    </a>
+
+    <h3>AI Face Scan</h3>
+</div>
+
+<p class="scan-subtitle">
+    Verify your face, blink once, and allow GPS location
+</p>
+
+<div class="verification-steps">
+    <div>
+        <i class="fa-solid fa-face-smile"></i>
+        <span>Face</span>
+    </div>
+
+    <div>
+        <i class="fa-solid fa-eye"></i>
+        <span>Blink</span>
+    </div>
+
+    <div>
+        <i class="fa-solid fa-location-dot"></i>
+        <span>GPS</span>
+    </div>
+</div>
+
+<div class="face-scan-box">
+
+    <video id="video" autoplay playsinline></video>
+
+    <div class="circle-frame"></div>
+
+    <div class="scanner-glow"></div>
+
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+</div>
+
+<div class="scan-status-card">
+
+    <div class="status-row">
+        <span><i class="fa-solid fa-shield-halved"></i> Liveness</span>
+        <b id="liveText">Waiting</b>
+    </div>
+
+    <div class="status-row">
+        <span><i class="fa-solid fa-eye"></i> Attention</span>
+        <b id="attText">Waiting</b>
+    </div>
+
+    <div class="status-row">
+        <span><i class="fa-solid fa-location-dot"></i> GPS Location</span>
+        <b id="gpsText">Required</b>
+    </div>
+
+    <p id="resultText">
+        Start camera and keep your face inside the scanner.
+    </p>
+
+</div>
+
+<div class="scan-tips">
+    <h4>Scan Tips</h4>
+    <p><i class="fa-solid fa-check"></i> Keep your face centered</p>
+    <p><i class="fa-solid fa-check"></i> Blink once for liveness verification</p>
+    <p><i class="fa-solid fa-check"></i> Allow location permission</p>
+</div>
+
+<button id="startBtn" class="app-btn">
+    <i class="fa-solid fa-camera"></i>
+    Start Camera
+</button>
+
+<button id="markBtn" class="app-btn secondary">
+    <i class="fa-solid fa-circle-check"></i>
+    Capture & Mark Attendance
+</button>
+
+<canvas id="canvas" style="display:none;"></canvas>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/student_mark.js') }}"></script>
+{% endblock %}

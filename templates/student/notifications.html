@@ -1,0 +1,51 @@
+{% extends 'student/base.html' %}
+
+{% block content %}
+
+<div class="scan-header">
+    <a href="/student/home" class="back-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+    </a>
+
+    <h3>Notifications</h3>
+</div>
+
+<p class="scan-subtitle">
+    Smart attendance alerts
+</p>
+
+<div class="notification-card active">
+    <div class="notification-icon green">
+        <i class="fa-solid fa-shield-halved"></i>
+    </div>
+
+    <div>
+        <h4>System Active</h4>
+        <p>Face recognition and GPS location are enabled.</p>
+    </div>
+</div>
+
+{% for r in recent %}
+
+<div class="notification-card">
+    <div class="notification-icon blue">
+        <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <div>
+        <h4>{{ r.status }}</h4>
+        <p>{{ r.date }} at {{ r.time }}</p>
+    </div>
+</div>
+
+{% else %}
+
+<div class="empty-card">
+    <i class="fa-solid fa-bell-slash"></i>
+    <h4>No Notifications</h4>
+    <p>Your alerts will appear here.</p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

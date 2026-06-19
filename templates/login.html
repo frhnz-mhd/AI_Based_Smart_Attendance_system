@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>AI Attendance Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="student-body login-bg">
+
+<main class="login-wrapper">
+
+    <div class="login-brand">
+        <div class="brand-logo">
+            <i class="fa-solid fa-face-smile"></i>
+        </div>
+
+        <h1>AI Attendance</h1>
+        <p>Face Recognition • Liveness • GPS Tracking</p>
+    </div>
+
+    <div class="login-card pro-login">
+
+        <div class="login-top-icon">
+            <i class="fa-solid fa-camera"></i>
+        </div>
+
+        <h2>Welcome Back</h2>
+        <p class="login-muted">Login to continue</p>
+
+        {% if error %}
+        <div class="error-box">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="post" class="login-form">
+
+            <label>Username</label>
+            <div class="input-box icon-input">
+                <i class="fa-solid fa-user"></i>
+                <input name="username" placeholder="Username / Reg No" required>
+            </div>
+
+            <label>Password</label>
+            <div class="input-box icon-input">
+                <i class="fa-solid fa-lock"></i>
+                <input name="password" type="password" placeholder="Password" required>
+            </div>
+
+            <div class="login-options">
+                <label>
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#">Forgot?</a>
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </form>
+
+        <div class="login-features">
+            <span><i class="fa-solid fa-shield-halved"></i> Secure</span>
+            <span><i class="fa-solid fa-location-dot"></i> GPS</span>
+            <span><i class="fa-solid fa-eye"></i> AI Scan</span>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

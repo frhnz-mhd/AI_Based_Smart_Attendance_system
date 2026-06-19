@@ -1,0 +1,65 @@
+{% extends 'student/base.html' %}
+
+{% block content %}
+
+<div class="profile-top">
+
+    <div class="profile-cover"></div>
+
+    <div class="profile-avatar">
+
+        <i class="fa-solid fa-user-graduate"></i>
+
+    </div>
+
+</div>
+
+<div class="profile-content">
+
+    <h2>{{ student.name }}</h2>
+
+    <p class="profile-reg">
+        {{ student.reg_no }}
+    </p>
+
+    <div class="profile-info-card">
+
+        <div class="profile-row">
+            <span>Course</span>
+            <b>{{ student.course }}</b>
+        </div>
+
+        <div class="profile-row">
+            <span>Class</span>
+            <b>{{ student.class_name }}</b>
+        </div>
+
+        <div class="profile-row">
+            <span>Phone</span>
+            <b>{{ student.phone }}</b>
+        </div>
+
+    </div>
+
+    <div class="profile-actions">
+
+        <a href="/student/records" class="profile-btn">
+            <i class="fa-solid fa-file-lines"></i>
+            My Records
+        </a>
+
+        <a href="/student/notifications" class="profile-btn">
+            <i class="fa-solid fa-bell"></i>
+            Notifications
+        </a>
+
+        <a href="/logout" class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

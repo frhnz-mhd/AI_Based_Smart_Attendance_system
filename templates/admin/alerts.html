@@ -1,0 +1,147 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <div>
+        <h1>Alerts & Reports</h1>
+        <p>Monitor absentees, attention issues, and GPS attendance locations.</p>
+    </div>
+
+    <div class="page-badge">
+        <i class="fa-solid fa-bell"></i>
+        Smart Alerts
+    </div>
+</div>
+
+<div class="alert-summary-grid">
+    <div class="alert-summary red-summary">
+        <i class="fa-solid fa-user-xmark"></i>
+        <div>
+            <h2>{{ absent|length }}</h2>
+            <p>Absent Today</p>
+        </div>
+    </div>
+
+    <div class="alert-summary yellow-summary">
+        <i class="fa-solid fa-eye-slash"></i>
+        <div>
+            <h2>{{ attention|length }}</h2>
+            <p>Attention Alerts</p>
+        </div>
+    </div>
+
+    <div class="alert-summary blue-summary">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+            <h2>{{ location_alerts|length if location_alerts else 0 }}</h2>
+            <p>Location Records</p>
+        </div>
+    </div>
+</div>
+
+<div class="grid2">
+
+    <section class="panel">
+        <h2>
+            <i class="fa-solid fa-user-xmark"></i>
+            Absent Students Today
+        </h2>
+
+        {% for s in absent %}
+        <div class="modern-alert red-alert">
+            <div class="alert-icon">
+                <i class="fa-solid fa-user-xmark"></i>
+            </div>
+
+            <div>
+                <b>{{ s.name }}</b>
+                <p>{{ s.reg_no }} • {{ s.class_name }}</p>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-alert">
+            <i class="fa-solid fa-circle-check"></i>
+            <p>No absent students today.</p>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section class="panel">
+        <h2>
+            <i class="fa-solid fa-eye"></i>
+            Attention Alerts
+        </h2>
+
+        {% for a in attention %}
+        <div class="modern-alert yellow-alert">
+            <div class="alert-icon">
+                <i class="fa-solid fa-eye-slash"></i>
+            </div>
+
+            <div>
+                <b>{{ a.name }}</b>
+                <p>{{ a.date }} {{ a.time }} • {{ a.attention }}</p>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-alert">
+            <i class="fa-solid fa-circle-check"></i>
+            <p>No attention alerts.</p>
+        </div>
+        {% endfor %}
+    </section>
+
+</div>
+
+<section class="panel">
+    <h2>
+        <i class="fa-solid fa-location-dot"></i>
+        GPS Location Records
+    </h2>
+
+    {% if location_alerts %}
+    <table>
+        <thead>
+            <tr>
+                <th>Reg No</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for l in location_alerts %}
+            <tr>
+                <td><b>{{ l.reg_no }}</b></td>
+                <td>{{ l.name }}</td>
+                <td>{{ l.date }}</td>
+                <td>{{ l.time }}</td>
+                <td>
+                    {% if l.latitude and l.longitude %}
+                    <a
+                        class="btn small"
+                        href="https://www.google.com/maps?q={{ l.latitude }},{{ l.longitude }}"
+                        target="_blank">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        View Map
+                    </a>
+                    {% else %}
+                    <span class="no-location">No Location</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-alert">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <p>No GPS location records available yet.</p>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock %}

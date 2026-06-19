@@ -1,0 +1,182 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="dashboard-grid">
+
+    <div class="stat-card blue">
+        <div>
+            <span>Total Students</span>
+            <h2>{{ total_students }}</h2>
+        </div>
+
+        <i class="fa-solid fa-users"></i>
+    </div>
+
+    <div class="stat-card green">
+        <div>
+            <span>Present Today</span>
+            <h2>{{ present_today }}</h2>
+        </div>
+
+        <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <div class="stat-card red">
+        <div>
+            <span>Absent Today</span>
+            <h2>{{ absent_today }}</h2>
+        </div>
+
+        <i class="fa-solid fa-user-xmark"></i>
+    </div>
+
+    <div class="stat-card purple">
+        <div>
+            <span>Total Records</span>
+            <h2>{{ total_records }}</h2>
+        </div>
+
+        <i class="fa-solid fa-database"></i>
+    </div>
+
+</div>
+
+<div class="dashboard-row">
+
+    <section class="panel chart-panel">
+
+        <div class="panel-header">
+            <h2>Attendance Overview</h2>
+        </div>
+
+        <div class="attendance-chart">
+
+            <div class="chart-bar">
+                <div class="bar green-bar" style="height:85%"></div>
+                <span>Mon</span>
+            </div>
+
+            <div class="chart-bar">
+                <div class="bar green-bar" style="height:65%"></div>
+                <span>Tue</span>
+            </div>
+
+            <div class="chart-bar">
+                <div class="bar green-bar" style="height:92%"></div>
+                <span>Wed</span>
+            </div>
+
+            <div class="chart-bar">
+                <div class="bar green-bar" style="height:75%"></div>
+                <span>Thu</span>
+            </div>
+
+            <div class="chart-bar">
+                <div class="bar green-bar" style="height:95%"></div>
+                <span>Fri</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="panel ai-panel">
+
+        <h2>AI Features</h2>
+
+        <div class="feature-item">
+            <i class="fa-solid fa-face-smile"></i>
+            Face Recognition
+        </div>
+
+        <div class="feature-item">
+            <i class="fa-solid fa-eye"></i>
+            Attention Detection
+        </div>
+
+        <div class="feature-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            Anti-Spoofing
+        </div>
+
+        <div class="feature-item">
+            <i class="fa-solid fa-location-dot"></i>
+            GPS Tracking
+        </div>
+
+        <div class="feature-item">
+            <i class="fa-solid fa-bell"></i>
+            Smart Alerts
+        </div>
+
+    </section>
+
+</div>
+
+<section class="panel">
+
+    <div class="panel-header">
+        <h2>Recent Attendance</h2>
+    </div>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Reg No</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for r in recent %}
+        <tr>
+            <td>{{ r.reg_no }}</td>
+            <td>{{ r.name }}</td>
+            <td>{{ r.date }}</td>
+            <td>{{ r.time }}</td>
+            <td>
+                <span class="badge-success">
+                    {{ r.status }}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</section>
+
+<section class="panel quick-panel">
+
+    <h2>Quick Actions</h2>
+
+    <div class="quick-actions">
+
+        <a href="/admin/students" class="quick-btn">
+            <i class="fa-solid fa-user-plus"></i>
+            Add Student
+        </a>
+
+        <a href="/admin/alerts" class="quick-btn">
+            <i class="fa-solid fa-bell"></i>
+            View Alerts
+        </a>
+
+        <a href="/download_csv" class="quick-btn">
+            <i class="fa-solid fa-download"></i>
+            Export CSV
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

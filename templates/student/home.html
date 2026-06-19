@@ -1,0 +1,185 @@
+{% extends 'student/base.html' %}
+
+{% block content %}
+
+<div id="sideOverlay" class="side-overlay" onclick="closeMenu()"></div>
+
+<div id="sideMenu" class="side-menu">
+    <div class="side-header">
+        <div class="side-avatar">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+        <h3>{{ name }}</h3>
+        <p>{{ reg_no }}</p>
+    </div>
+
+    <a href="/student/home"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="/student/mark"><i class="fa-solid fa-camera"></i> Mark Attendance</a>
+    <a href="/student/records"><i class="fa-solid fa-file-lines"></i> My Records</a>
+    <a href="/student/notifications"><i class="fa-solid fa-bell"></i> Notifications</a>
+    <a href="/student/profile"><i class="fa-solid fa-user"></i> Profile</a>
+    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+</div>
+
+<div class="dashboard-header">
+    <button class="menu-icon" onclick="openMenu()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a href="/student/notifications" class="notify-icon">
+        <i class="fa-solid fa-bell"></i>
+        <span class="notification-dot"></span>
+    </a>
+</div>
+
+<div class="welcome-card">
+    <div>
+        <h3>Welcome,<br>{{ name }}</h3>
+        <p>Stay consistent, stay on track!</p>
+    </div>
+
+    <div class="avatar-circle">
+        <i class="fa-solid fa-user-graduate"></i>
+    </div>
+</div>
+
+<div class="today-card">
+    <div>
+        <span>Today</span>
+        <h4>{{ current_date }}</h4>
+    </div>
+
+    {% if today_record %}
+        <span class="present-chip">Present</span>
+    {% else %}
+        <span class="absent-chip">Not Marked</span>
+    {% endif %}
+</div>
+
+<div class="attendance-overview">
+    <div>
+        <h2>{{ attendance_rate }}%</h2>
+        <p>Attendance Rate</p>
+    </div>
+
+    <div class="progress-ring">
+        <span>{{ attendance_rate }}%</span>
+    </div>
+</div>
+
+<div class="mini-stats">
+    <div class="mini-card green-card">
+        <i class="fa-solid fa-check"></i>
+        <h4>{{ present_count }}</h4>
+        <p>Present</p>
+    </div>
+
+    <div class="mini-card red-card">
+        <i class="fa-solid fa-xmark"></i>
+        <h4>{{ absent_count }}</h4>
+        <p>Absent</p>
+    </div>
+
+    <div class="mini-card orange-card">
+        <i class="fa-solid fa-eye"></i>
+        <h4>{{ attention_alerts }}</h4>
+        <p>Alerts</p>
+    </div>
+</div>
+
+<div class="section-title">
+    <h3>Quick Actions</h3>
+</div>
+
+<div class="menu-list">
+    <a href="/student/mark" class="menu-card">
+        <div class="menu-left">
+            <div class="menu-icon green">
+                <i class="fa-solid fa-camera"></i>
+            </div>
+            <div>
+                <h4>Mark Attendance</h4>
+                <p>Face scan + GPS location</p>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </a>
+
+    <a href="/student/records" class="menu-card">
+        <div class="menu-left">
+            <div class="menu-icon blue">
+                <i class="fa-solid fa-file-lines"></i>
+            </div>
+            <div>
+                <h4>My Records</h4>
+                <p>View attendance history</p>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </a>
+
+    <a href="/student/profile" class="menu-card">
+        <div class="menu-left">
+            <div class="menu-icon purple">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+                <h4>My Profile</h4>
+                <p>View your profile</p>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </a>
+
+    <a href="/student/notifications" class="menu-card">
+        <div class="menu-left">
+            <div class="menu-icon orange">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <div>
+                <h4>Notifications</h4>
+                <p>Smart alerts and updates</p>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </a>
+</div>
+
+<div class="ai-feature-card">
+    <h3>AI Features Enabled</h3>
+
+    <div class="feature-grid">
+        <div>
+            <i class="fa-solid fa-face-smile"></i>
+            <span>Face Recognition</span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-eye"></i>
+            <span>Liveness Check</span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>GPS Location</span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-bell"></i>
+            <span>Smart Alerts</span>
+        </div>
+    </div>
+</div>
+
+<div class="announcement-card">
+    <div class="announcement-icon">
+        <i class="fa-solid fa-bullhorn"></i>
+    </div>
+
+    <div>
+        <h4>Reminder</h4>
+        <p>Please mark attendance before the class starts.</p>
+    </div>
+</div>
+
+{% endblock %}

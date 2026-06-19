@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="brand-box">
+        <div class="brand-icon">
+            <i class="fa-solid fa-face-smile"></i>
+        </div>
+
+        <div>
+            <h2>AI Attendance</h2>
+            <p>Admin Panel</p>
+        </div>
+    </div>
+
+    <nav class="side-nav">
+        <a href="/admin/dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+
+        <a href="/admin/students">
+            <i class="fa-solid fa-users"></i>
+            Students
+        </a>
+
+        <a href="/admin/records">
+            <i class="fa-solid fa-clipboard-list"></i>
+            Attendance
+        </a>
+
+        <a href="/admin/alerts">
+            <i class="fa-solid fa-bell"></i>
+            Alerts
+        </a>
+
+        <a href="/download_csv">
+            <i class="fa-solid fa-download"></i>
+            Reports
+        </a>
+
+        <a href="/logout" class="logout-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+    </nav>
+
+</aside>
+
+<main class="content">
+
+    <header class="topbar">
+        <div>
+            <h3>Admin Dashboard</h3>
+            <p>AI-Based Smart Attendance System</p>
+        </div>
+
+        <div class="admin-profile">
+            <i class="fa-solid fa-user-shield"></i>
+            <span>Admin</span>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+</main>
+
+</body>
+</html>

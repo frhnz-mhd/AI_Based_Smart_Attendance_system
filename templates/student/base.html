@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Attendance App</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="student-body">
+
+<div class="app-container">
+    {% block content %}{% endblock %}
+</div>
+
+<nav class="bottom-nav">
+    <a href="/student/home"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="/student/mark"><i class="fa-solid fa-camera"></i><span>Mark</span></a>
+    <a href="/student/records"><i class="fa-solid fa-file-lines"></i><span>Records</span></a>
+    <a href="/student/notifications"><i class="fa-solid fa-bell"></i><span>Alerts</span></a>
+    <a href="/student/profile"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+
+<script>
+function openMenu() {
+    const menu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("sideOverlay");
+
+    if (menu) menu.classList.add("show");
+    if (overlay) overlay.classList.add("show");
+}
+
+function closeMenu() {
+    const menu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("sideOverlay");
+
+    if (menu) menu.classList.remove("show");
+    if (overlay) overlay.classList.remove("show");
+}
+</script>
+
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

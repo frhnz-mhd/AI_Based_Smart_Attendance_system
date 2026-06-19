@@ -1,0 +1,86 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="page-head">
+    <div>
+        <h1>Attendance Records</h1>
+        <p>View all student attendance, AI verification, and GPS location.</p>
+    </div>
+
+    <a class="page-badge" href="/download_csv">
+        <i class="fa-solid fa-download"></i>
+        Download CSV
+    </a>
+</div>
+
+<section class="panel">
+    <div class="panel-header">
+        <h2><i class="fa-solid fa-clipboard-list"></i> All Records</h2>
+
+        <input
+            class="table-search"
+            type="text"
+            placeholder="Search records..."
+            onkeyup="searchTable(this)">
+    </div>
+
+    <table id="recordsTable">
+        <thead>
+            <tr>
+                <th>Reg No</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Liveness</th>
+                <th>Attention</th>
+                <th>Confidence</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in records %}
+            <tr>
+                <td><b>{{ r.reg_no }}</b></td>
+                <td>{{ r.name }}</td>
+                <td>{{ r.date }}</td>
+                <td>{{ r.time }}</td>
+                <td><span class="badge-success">{{ r.status }}</span></td>
+                <td>{{ r.liveness }}</td>
+                <td>{{ r.attention }}</td>
+                <td>{{ r.confidence }}%</td>
+                <td>
+                    {% if r.latitude and r.longitude %}
+                    <a class="btn small" href="https://www.google.com/maps?q={{ r.latitude }},{{ r.longitude }}" target="_blank">
+                        <i class="fa-solid fa-location-dot"></i> View Map
+                    </a>
+                    {% else %}
+                    <span class="no-location">No Location</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="9">No attendance records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<script>
+function searchTable(input) {
+    const filter = input.value.toLowerCase();
+    const rows = document.querySelectorAll("#recordsTable tbody tr");
+
+    rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(filter)
+            ? ""
+            : "none";
+    });
+}
+</script>
+
+{% endblock %}
