@@ -1,5 +1,5 @@
 # AI-Based Smart Attendance System Using Face Recognition Technology
-
+ 
 ## Project Overview
 
 The AI-Based Smart Attendance System is a mobile and web-based attendance management solution that automates student attendance using Face Recognition Technology. The system eliminates manual attendance marking, reduces proxy attendance, and provides accurate attendance records in real time.
